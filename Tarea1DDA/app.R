@@ -275,7 +275,7 @@ server <- function(input, output) {
     
     #Etiquetas de vertices
     vertices <- geom_point(aes(x=c(x0,x1),y=c(y0,y1)), size=5, colour=vcolor)
-    etiquetas <- geom_text(aes(x=c(x0,x1),y=c(y0,y1)), size=5, colour=vcolor, label=c("A","B"), vjust = -0.5)
+    etiquetas <- geom_text(aes(x=c(x0,x1),y=c(y0,y1)), size=5, colour=vcolor, label=c("Pi","Pf"), vjust = -0.5)
   }
   else{
     #Tomamos los valores insertados  
