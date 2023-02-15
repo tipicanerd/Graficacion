@@ -93,7 +93,7 @@ bresenham <- function(x0, y0, x1, y1){
   
   #Mientras no lleguemos a x1 seguimos agregando puntos
   
-  while ( xk<=x1 | yk<=y1) {
+  while ( xk<=x1 & yk<=y1) {
     
     #Nos movemos en el eje x
       xk <- xk +1
@@ -108,7 +108,7 @@ bresenham <- function(x0, y0, x1, y1){
     }
     
     #Agregamos xy y yk a las coordenadas
-    coords <- rbind(coords, c(round(xk), round(yk)) )
+    coords <- rbind(coords, c(xk, yk) )
     
   }
   
