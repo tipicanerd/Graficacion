@@ -11,6 +11,7 @@
 library(docstring)
 library(ggplot2)
 library(shiny)
+library(shinythemes)
 
 #### ALGORITMO DDA ####
 dda <- function(x0, y0, x1, y1){
@@ -219,7 +220,7 @@ alg_control <- fixedRow(
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
-
+    theme = shinytheme("superhero"),
     # Application title
     titlePanel("Trazado de lineas"),
     helpText("Creado por Jazmín López Chacón"),
@@ -241,7 +242,7 @@ ui <- fluidPage(
         ),
 
         # Show a plot of the generated distribution
-        mainPanel(
+      mainPanel(
            plotOutput("scatterPlot")
         )
     )
@@ -274,8 +275,8 @@ server <- function(input, output) {
     }
     
     #Etiquetas de vertices
-    vertices <- geom_point(aes(x=c(x0,x1),y=c(y0,y1)), size=5, colour=vcolor)
-    etiquetas <- geom_text(aes(x=c(x0,x1),y=c(y0,y1)), size=5, colour=vcolor, label=c("Pi","Pf"), vjust = -0.5)
+    vertices <- geom_point(aes(x=c(x0,x1),y=c(y0,y1)), size=7, shape=15, colour=vcolor)
+    etiquetas <- geom_text(aes(x=c(x0,x1),y=c(y0,y1)), size=5, colour="white", label=c("Pi","Pf"))
   }
   else{
     #Tomamos los valores insertados  
@@ -295,8 +296,8 @@ server <- function(input, output) {
     algoritmo <- "DDA"
     
     #Vertices
-    vertices <- geom_point(aes(c(x0,x1,x2), c(y0,y1,y2)), size=5, colour=vcolor)
-    etiquetas <- geom_text(aes(c(x0,x1,x2), c(y0,y1,y2)), label=c("A","B", "C"), size=5, colour=vcolor,  vjust = -0.5)
+    vertices <- geom_point(aes(c(x0,x1,x2), c(y0,y1,y2)), size=7, colour=vcolor, shape=15)
+    etiquetas <- geom_text(aes(c(x0,x1,x2), c(y0,y1,y2)), label=c("A","B", "C"), size=5, colour="white")
   }
 
   #Plot de los pixeles con centro en la coordenada y tamanio 1x1
