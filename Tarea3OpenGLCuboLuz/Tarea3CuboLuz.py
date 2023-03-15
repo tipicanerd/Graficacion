@@ -97,15 +97,18 @@ def main():
     glEnable(GL_LIGHT0)
     glLightfv(GL_LIGHT0, GL_DIFFUSE, colorl1)
     glLightfv(GL_LIGHT0, GL_SPECULAR, colorl1)
+    glLightfv(GL_LIGHT0, GL_AMBIENT, colorl1)
     glLightfv(GL_LIGHT0, GL_POSITION, posl1)
+    
 
     ##LUZ 2
-    colorl2 = (1.0, 1.0, 0.4, 0.75)
+    colorl2 = (1.0, 1.0, 1.0, 0.75)
     posl2 = (-1.2, -1.3, 1.3)
     glEnable(GL_LIGHT1)
     glMaterialfv(GL_FRONT, GL_DIFFUSE,colorl2)
     glLightfv(GL_LIGHT1, GL_DIFFUSE, colorl2)
     glLightfv(GL_LIGHT1, GL_SPECULAR, colorl2)
+    #glLightfv(GL_LIGHT1, GL_AMBIENT, colorl1)
     glLightfv(GL_LIGHT1, GL_POSITION, posl2)
 
     glMatrixMode(GL_MODELVIEW)

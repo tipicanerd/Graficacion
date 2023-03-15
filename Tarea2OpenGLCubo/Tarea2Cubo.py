@@ -1,3 +1,8 @@
+"""
+pip install pygame
+pip install OpenGL
+"""
+
 #Base: https://stackoverflow.com/questions/66623528/drawing-a-cube-with-pygame-and-opengl-in-python-environment
 
 import pygame
@@ -28,17 +33,17 @@ normales = [
     (1.0, 0.0, 0.0), #Cara derecha
     (0.0, 1.0, 0.0), #Cara superior
     (-1.0, 0.0, 0.0), #Cara izquierda
-    (0.0, 0.0, 1.0)  #Cra delantera
+    (0.0, 0.0, 1.0)  #Cara delantera
 ]
 
 #Lista de los colores usados. La paleta seleccionada es: https://coolors.co/palette/01befe-ffdd00-ff7d00-ff006d-adff02-8f00ff
 colores = [
-    (0.004, 0.745, 0.996), #Azul
-    (1.00, 0.867, 0), #Amarillo
-    (1.00, 0.49, 0), #Naranja
-    (1.00, 0, 0.427), #Rosa
-    (0.678, 1.00, 0.008), #Verde
-    (0.561, 0, 1.00) #Morado
+    (0.004, 0.745, 0.996, 1), #Azul
+    (1.00, 0.867, 0, 1), #Amarillo
+    (1.00, 0.49, 0, 1), #Naranja
+    (1.00, 0, 0.427, 1), #Rosa
+    (0.678, 1.00, 0.008, 1), #Verde
+    (0.561, 0, 1.00, 1) #Morado
 
 ]
 
@@ -49,30 +54,18 @@ def cubo():
     Ademas vamos a contornearlas con un color gris para que sean mas
     distinguibles entre si
     """
-
-    #glEnable(GL_NORMALIZE)
-
+    glBegin(GL_QUADS)
     for color,cara,normal in zip(colores,caras, normales):
-        #Lineas
-        """
-        glLineWidth(7.0)
-        glBegin(GL_LINE_LOOP)
-        #Dibujamos un loop con los indices pertenecientes a la cara
-        for index in cara:
-            glColor3f(0.867, 0.867, 0.867)
-            glVertex3fv(vertices[index])
-        glEnd()
-        #"""
         #Caras
-        glBegin(GL_QUADS)
-        
+        glNormal3fv(normal)
         for index in cara:
-            glNormal3fv(normal)
-            glColor3fv(color)
+            glColor4fv(color)
             glVertex3fv(vertices[index])
-        glEnd()
-        #"""
+
+    glEnd()
     glFlush()
+        
+    
 
 ##Define main function to draw a window for the openGL
 def main():
@@ -83,19 +76,19 @@ def main():
 
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    #gluLookAt(0.2,0.0,0.0,  0.0,0.0,-0.1,  0.0,1.0,0.0)
 
+    gluPerspective(45, (display[0] / display[1]), 0.1, 50.0)
     glEnable(GL_DEPTH_TEST)
-    glDepthFunc(GL_LEQUAL)
+    glEnable(GL_NORMALIZE)
 
-    gluPerspective(60, (display[0] / display[1]), 0, 100.0)
-    
-    glEnable(GL_CULL_FACE)
 
+
+    glMatrixMode(GL_MODELVIEW)
     
     glTranslatef(0.0, 0.0, -5)
-    #glRotatef(45.0, 15.0, 45.0, 45.0)
+    #glRotatef(45, 90.0, 120.0, 0.0)
     
+    #glEnable(GL_DEPTH_TEST)
 
     while True:
         for event in pygame.event.get():
@@ -103,13 +96,12 @@ def main():
                 pygame.quit()
                 quit()
 
-        glRotatef(0.97, 90, 60, 30)
+        
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-        glCullFace(GL_BACK)
-        glMatrixMode(GL_MODELVIEW)
+        glRotatef(1, 90.0, 120.0, 0.0)
         cubo()
         pygame.display.flip()
-        pygame.time.wait(50)
+        pygame.time.wait(20)
 
 
 main()
