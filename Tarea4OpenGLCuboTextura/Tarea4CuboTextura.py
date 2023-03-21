@@ -138,7 +138,7 @@ def main():
 
         
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-        glRotatef(23, 120.0, 89.0, 45.0)
+        glRotatef(5, 120.0, 89.0, 45.0)
         cubo()
         pygame.display.flip()
         pygame.time.wait(10)
