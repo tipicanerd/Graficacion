@@ -64,6 +64,7 @@ def cargar_textura(archivo):
     height = textureSurface.get_height()
     glBindTexture(GL_TEXTURE_2D, id)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData)
+    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE )
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
@@ -75,12 +76,11 @@ def cubo():
     Ademas vamos a contornearlas con un color gris para que sean mas
     distinguibles entre si
     """
-    
     for i,cara in enumerate(caras):
         #Caras
         id = cargar_textura(texturas[i])
         glEnable(GL_TEXTURE_2D)
-        glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE,[1.0,1.0,1.0])
+        glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE,[1.0,1.0, 1.0])
         glBindTexture(GL_TEXTURE_2D, id)
         glBegin(GL_QUADS)
         glNormal3fv(normales[i])
