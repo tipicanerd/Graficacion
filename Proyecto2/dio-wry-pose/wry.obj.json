@@ -1,0 +1,27 @@
+{
+  "created_at": "2023-05-15T12:47:52.984690",
+  "version": "0.1",
+  "mtllibs": [
+    "wry.mtl"
+  ],
+  "vertex_buffers": [
+    {
+      "material": "lambert1",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 0,
+      "byte_length": 1596480
+    },
+    {
+      "material": "lambert2",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 1596480,
+      "byte_length": 36480
+    },
+    {
+      "material": "blinn1",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 1632960,
+      "byte_length": 23040
+    }
+  ]
+}

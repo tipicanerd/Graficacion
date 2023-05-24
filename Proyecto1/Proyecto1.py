@@ -5,6 +5,9 @@
 #Base textura: https://stackoverflow.com/q/58967457
 #Base movimientos: https://stackoverflow.com/questions/59823131/how-to-rotate-a-cube-using-mouse-in-pyopengl
 
+
+#pip3 install pyglet==1.5
+
 import ctypes
 import os
 import pygame
@@ -144,10 +147,13 @@ def luzAzul():
     glLightfv(GL_LIGHT3, GL_POSITION, pos)
 
 def Main():
-    
+    ##############################
+    #### VARIABLES AUXILIARES ####
+    ##############################
+
     posz = -5.0 #Zoom
 
-    rot1, rot2 = 0.0,0.0 #Cubo
+    rot1, rot2, rot3 = 0.0, 0.0, 0.0 #Cubo
 
     luzRojaOn, luzVerdeOn, luzAzulOn = 1,1,1 #Luces variantes
     
@@ -155,9 +161,6 @@ def Main():
     seRie = 0
     DIO_posx, DIO_posz = 0.5, -0.05
     DIO_rot = 0
-
-    
-
 
     pygame.init()
     pygame.mixer.init()
@@ -220,6 +223,8 @@ def Main():
 
         glMatrixMode(GL_MODELVIEW)  
         modelMatrix = glGetFloatv(GL_MODELVIEW_MATRIX)
+        
+        glPushMatrix()
         glLoadIdentity()
 
         for event in pygame.event.get():
@@ -227,11 +232,8 @@ def Main():
                 pygame.quit()
             if event.type == pygame.MOUSEMOTION:
                 if mover_cubo == True:
-                    rot1 = event.rel[1]
-                    rot2 = event.rel[0]
-                else:
-                    rot1 = 0.0
-                    rot2 = 0.0
+                    glRotatef(event.rel[1], 1, 0, 0)
+                    glRotatef(event.rel[0], 0, 1, 0)
 
             if event.type == pygame.KEYDOWN:
                 # ZOOM
@@ -269,10 +271,8 @@ def Main():
             elif pygame.mouse.get_pressed()[0] == 0:
                 mover_cubo = False
 
-        glPushMatrix()
+        
 
-        glRotate(rot1, 1, 0, 0)
-        glRotate(rot2, 0, 1, 0)
 
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 
@@ -309,8 +309,6 @@ def Main():
             pygame.mixer.Sound.stop(risa)
             DIO_rot = 0
         
-        
-            
         DIO()
         glPopMatrix()
 

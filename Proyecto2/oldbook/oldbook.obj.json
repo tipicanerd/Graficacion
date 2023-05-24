@@ -1,0 +1,15 @@
+{
+  "created_at": "2023-05-16T09:53:46.755660",
+  "version": "0.1",
+  "mtllibs": [
+    "oldbook.mtl"
+  ],
+  "vertex_buffers": [
+    {
+      "material": "None",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 0,
+      "byte_length": 22656
+    }
+  ]
+}
